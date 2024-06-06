@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+
+{% block title %}
+  My books
+{% endblock %}
+
+{% block content %}
+  <div id="read">
+    <form action="formhandler.php" method="post">  
+      <fieldset>
+        <legend>Read the Bible</legend>
+
+          <label class="center">Vesion</label>
+          <select name="Versions" class="center">
+            <option value="">Select one</option>
+            <option value="t_asv">American Standard</option>
+            <option value="t_bbe">Bible in Basic English</option>
+            <option value="t_kjv">King James Version</option>
+            <option value="t_web">World English Bible</option>
+            <option value="t_ylt">Young's Literal Translation</option>
+          </select>
+    
+          <label class="center">Books</label>
+          <select name="books" class="center">
+            {% for x in books %}
+              <option value="{{ x.order }}">{{ x.title_short }}</option>
+            {% endfor %}
+          </select>
+
+          <input type="submit" name="submit" class="center" value="Read it!">
+        </legend>
+      </fieldset>
+    </form>
+  </div>
+{% endblock %}

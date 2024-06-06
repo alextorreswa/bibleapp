@@ -1,0 +1,34 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Bible Notes App
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+  <br>
+  <h2 class="center">Welcome {{ user.username }}!</h3>
+
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="center">Log Out</button>
+    </form>
+    <p><a href="{% url 'password_change' %}" class="center">Password Change</a></p>
+
+  <h3 class="center">Discover the power of God's word, compare versions, find references, and keep a diary of all your notes!</h4>
+
+  <img class="center" src="{% static 'figth.jpg' %}" alt=""> 
+
+  <p class="center">Check out all our <a href="books/">books</a></p>
+
+{% else %}
+
+  <h3 class="center">You are not logged in</h3>
+  <a href="{% url 'login' %}" class="center">Log In</a>
+
+{% endif %}
+{% endblock %}
