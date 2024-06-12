@@ -132,3 +132,17 @@ class TYlt(models.Model):
     class Meta:
         managed = False
         db_table = 't_ylt'
+
+class Bibles(models.Model):
+    bible = models.TextField(db_column='Bible', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    idbible = models.TextField(db_column='idBible', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    vid = models.IntegerField(blank=True, null=True)
+    b = models.IntegerField(blank=True, null=True)
+    c = models.IntegerField(blank=True, null=True)
+    v = models.IntegerField(blank=True, null=True)
+    t = models.TextField(blank=True, null=True)
+    book = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'bibles'

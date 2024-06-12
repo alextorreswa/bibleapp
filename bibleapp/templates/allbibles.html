@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+
+{% block title %}
+  My books
+{% endblock %}
+
+{% block content %}
+  <h1>Books</h1>
+  
+  <ul>
+    {% for x in books %}
+      <p>{{ x.t }}</p>
+    {% endfor %}
+  </ul>
+{% endblock %}

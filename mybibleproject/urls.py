@@ -28,5 +28,5 @@ urlpatterns = [
     # path('', views.main, name='main'),
     path('books/', views.books, name='books'),
     path('books/details/<int:id>', views.book, name='book'),
-    path('read/', views.read, name='read')
+    path('read/<str:idbible>/<int:b>/<int:c>', views.read)
 ]
