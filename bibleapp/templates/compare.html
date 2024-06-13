@@ -1,0 +1,50 @@
+{% extends "master.html" %}
+
+{% block title %}
+  My books
+{% endblock %}
+
+{% block content %}
+
+    <main>
+      <h2 class="center">{{ allBibles.0.book}} {{ allBibles.0.c}}:{{ allBibles.0.v}}</h2>
+      {% for x in allBibles %}
+      <h3 id="versionTitle">{{ x.bible  }}</h2>
+      <p class="verse"><span class="verseNumber">{{x.v}}</span> <span class="verseText">{{x.t}}</span>  </p>
+      {% endfor %} 
+    </main>
+    <aside>
+      <form id="myForm" method="post">  {% csrf_token %}
+        <fieldset>
+          <legend>Select the verse to compare</legend>
+      
+            <label class="center">Books</label>
+            <select name="book" class="center" id="select" onchange="submitForm()">
+              {% for x in books %}
+                <option value="{{ x.order }}" {% if allBibles.0.b == x.order %} selected {% endif %} >{{ x.title_short }}</option>
+              {% endfor %}
+            </select>
+
+            <label class="center">Chapters</label>
+            <select name="chapter" class="center">
+              {% for x in chapters %}
+                <option value="{{ x.c }}" {% if allBibles.0.c == x.c %} selected {% endif %} >{{ x.c }}</option>
+              {% endfor %}
+            </select>            
+        
+            <label class="center">Verses</label>
+            <div id="chaptersNumbers" class="center">
+              {% for x in verses %}
+              <a href="/compare/{{allBibles.0.b}}/{{ allBibles.0.c }}/{{ x.v }}">{{ x.v }}</a>
+              {% endfor %}            
+            </div>
+
+            <div class="center">
+              <input type="submit" name="submit" class="buttonsForm" value="Read it!">
+            </div>            
+          </legend>
+        </fieldset>
+      </form>    
+    </aside>
+{% endblock %}
+

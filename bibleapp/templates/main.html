@@ -11,24 +11,40 @@
 {% if user.is_authenticated %}
 
   <br>
-  <h2 class="center">Welcome {{ user.username }}!</h3>
+  <h2 class="center" id="user">Welcome {{ user.username }}!</h2>
 
     <form action="{% url 'logout' %}" method="post">
       {% csrf_token %}
-      <button type="submit" class="center">Log Out</button>
+      <div class="center" >
+        <button type="submit" class="buttonsForm">Log Out</button>
+        <a href="{% url 'password_change' %}">
+          <button class="buttonsForm">Password Change</button>
+        </a>      
+      </div>
     </form>
-    <p><a href="{% url 'password_change' %}" class="center">Password Change</a></p>
 
-  <h3 class="center">Discover the power of God's word! Compare Bible versions, find cross-references, and keep a detailed diary of all your notes. Start your spiritual journey today!</h4>
+
+{% else %}
+
+    <div class="center">
+      <h2 >You are not logged in</h2>
+      <form style="display: inline" action="/accounts/signup" method="get">
+        <button class="buttonsForm" >Sign up</button>
+      </form>
+      <!-- <a href="/accounts/signup">Sign up</button></a>         -->
+      <form style="display: inline" action="{% url 'login' %}" method="get">
+        <button class="buttonsForm" >Log In</button>
+      </form>      
+      <!-- <a href="{% url 'login' %}"><button class="buttonsForm" >Log In</button></a> -->
+
+    </div>
+  
+{% endif %}
+
+<h3 class="center" id="versionTitle">Discover the power of God's word! Compare Bible versions, find cross-references, and keep a detailed diary of all your notes. Start your spiritual journey today!</h3>
 
   <img class="center" src="{% static 'figth.jpg' %}" alt=""> 
 
   <p class="center">Check out all our <a href="/read/t_asv/1/1">books</a></p>
 
-{% else %}
-
-  <h3 class="center">You are not logged in</h3>
-  <a href="{% url 'login' %}" class="center">Log In</a>
-
-{% endif %}
 {% endblock %}

@@ -17,7 +17,7 @@ body::before{
   right: 0;
   bottom: 0;  
   background-attachment: fixed;
-  background-image: url(background.jpg);  
+  background-image: url(background2.jpg); 
   opacity:.4;
   z-index:-1
   
@@ -28,6 +28,7 @@ body::before{
   background: black;
   padding: 20px;
   margin: 20px auto;
+  box-shadow: 0 0 10px rgba(236, 228, 228, 0.5);
 }
 
 
@@ -57,18 +58,21 @@ nav a:hover{
 
 main {
   width: 580px;
+  margin-top: 50px;
   /* height: 400px; */
   float: left;
 }
 
 aside {
-  width: 300px;
+  width: 260px;
   /* height: 350px; */
   background: rgb(27, 39, 52);
   float: right;
   padding: 20px;
   color: white;
   font-size: 0.9em;
+  margin-top: 50px;
+  margin-right: 20px;
 }
 
 footer {
@@ -112,16 +116,11 @@ img.left {
   /* height: 190px; */
 }
 
-.center {
-  margin: 20px auto;
-  display: block;
-  text-align: center;
-}
 
 p, h3, h4 {
   margin-bottom: 20px;
   line-height: 1.5;
-  color: gray;
+  color: whitesmoke;
 }
 
 h1 {
@@ -138,10 +137,9 @@ h2 {
 
 h1, h2 {
   margin-bottom: 10px;
-
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  
 }
+
 
 header {
   background: rgb(3, 32, 48);
@@ -161,16 +159,12 @@ header img{
 
 
 .center {
-  margin: 20px auto;
+  margin: 15px auto;
   display: block;
   text-align: center;
 }
 
-#read {
-  margin: 30px auto;
-  color: white;
-  width: 400px;
-}
+
 
 
 legend {
@@ -187,14 +181,80 @@ fieldset{
 
 label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-weight: bol;
   font-size: 1.1em;
+  margin-top: 25px;
 }
 
 select {
-  width: 200px;
+  width: 170px;
+  height: 30px;
+  margin-top: 15px;
 }
 
+#user {
+  color:burlywood
+}
 
+button{
+  width: 170px;
+  height: 30px;
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+input{
+  width: 170px;
+  height: 25px;
+  margin-top: 5px;
+}
+
+.buttonsForm {
+  display: inline-block;
+  font-weight: bold;
+  font-size: small;
+  background-color: aqua;
+}
+
+#versionTitle {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color:burlywood;
+}
+
+.verseNumber {
+  vertical-align: super;
+  font-size: smaller;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: aqua;
+}
+
+.verseText {
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color:lightsteelblue;
+  
+}
+
+#chaptersNumbers{
+  width: 170px;
+  font-size: 1.60em;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  word-spacing: 3px;
+  line-height: 35px;
+}
+
+.verse {
+  text-indent: 30px;
+}
+
+.helptext {
+  color: gray;
+  font-size: smaller;
+
+}
+
+.helptext li{
+  list-style-type: none;
+}
 

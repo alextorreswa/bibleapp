@@ -11,7 +11,7 @@
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .models import BookInfo, Allbibles
+from .models import BookInfo, Allbibles, TYlt
 from django.urls import reverse
 
 def books(request):
@@ -39,23 +39,44 @@ def read(request, idbible, b, c):
   template = loader.get_template('read.html')  
   books = BookInfo.objects.all().values()
   if request.method == 'POST':
-    # breakpoint()
     idBible = request.POST['version']
     idBook = request.POST['book']
-    c = request.POST['chapter']
+    c = 1
     allBibles = Allbibles.objects.filter(b=int(idBook), idbible=idBible, c=c)    
+    chapters = TYlt.objects.filter(b=int(idBook)).values('c').distinct
   else:
-    allBibles = Allbibles.objects.filter(b=b, idbible=idbible, c=c)  
+    chapters = TYlt.objects.filter(b=b).values('c').distinct
+
+    allBibles = Allbibles.objects.filter(b=b, idbible=idbible, c=c)
   context = {
     'allBibles': allBibles,
     'books': books,
+    'chapters': chapters,
   }      
-
-
-  # breakpoint()
   return HttpResponse(template.render(context, request))
 
-# def readSelect(request):
-#   idBible=request.Get['Versions']
-#   breakpoint()
-#   read(request, idBible, 1, 1)
+
+def compare(request, b, c, v):
+  template = loader.get_template('compare.html')  
+  books = BookInfo.objects.all().values()
+  if request.method == 'POST':
+    idChapter = request.POST['chapter']
+    idBook = request.POST['book']
+    v = 1
+    allBibles = Allbibles.objects.filter(b=int(idBook), c=c, v=v)    
+    chapters = TYlt.objects.filter(b=int(idBook)).values('c').distinct
+    verses = TYlt.objects.filter(b=int(idBook), c=int(idChapter)).values('v').distinct
+    # breakpoint()
+  else:
+    allBibles = Allbibles.objects.filter(b=b, c=c, v=v)
+    chapters = TYlt.objects.filter(b=b).values('c').distinct
+    verses = TYlt.objects.filter(b=b, c=c).values('v').distinct
+    
+  context = {
+    'allBibles': allBibles,
+    'books': books,
+    'chapters': chapters,
+    'verses':verses
+  }      
+  return HttpResponse(template.render(context, request))
+

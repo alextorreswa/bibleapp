@@ -5,53 +5,52 @@
 {% endblock %}
 
 {% block content %}
-  <div id="read">
-    <form  method="post">  {% csrf_token %}
-      <fieldset>
-        <legend>Read the Bible</legend>
 
-          <label class="center">Vesion</label>
-          <select name="version" class="center">
-            <option value="t_asv" {% if allBibles.0.idbible == 't_asv' %} selected {% endif %} >American Standard</option>
-            <option value="t_bbe" {% if allBibles.0.idbible == 't_bbe' %} selected {% endif %} >Bible in Basic English</option>
-            <option value="t_kjv" {% if allBibles.0.idbible == 't_kjv' %} selected {% endif %} >King James Version</option>
-            <option value="t_web" {% if allBibles.0.idbible == 't_web' %} selected {% endif %} >World English Bible</option>
-            <option value="t_ylt" {% if allBibles.0.idbible == 't_ylt' %} selected {% endif %} >Young's Literal Translation</option>
-          </select>
-    
-          <label class="center">Books</label>
-          <select name="book" class="center">
-            {% for x in books %}
-              <option value="{{ x.order }}" {% if allBibles.0.b == x.order %} selected {% endif %} >{{ x.title_short }}</option>
-            {% endfor %}
-          </select>
-
-          <label class="center">Chapters</label>
-          <select name="chapter" class="center">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-          </select>
-
-          <input type="submit" name="submit" class="center" value="Read it!">
-        </legend>
-
-      </fieldset>
-
-      <h2>{{ allBibles.0.bible  }} </h2>
+    <main>
+      <h2 class="center" id="versionTitle">{{ allBibles.0.bible  }}</h2>
       <h3>{{ allBibles.0.book}} {{ allBibles.0.c}}</h3>
       {% for x in allBibles %}
       
-      <p>{{x.v}} {{x.t}}</p>
-      {% endfor %}    
+      <p><span class="verseNumber">{{x.v}}</span> <span class="verseText">{{x.t}}</span>  </p>
+      {% endfor %} 
+    </main>
+    <aside>
+      <form  method="post">  {% csrf_token %}
+        <fieldset>
+          <legend>Select your prefered translation</legend>
+  
+            <label class="center">Vesion</label>
+            <select name="version" class="center" >
+              <option value="t_asv" {% if allBibles.0.idbible == 't_asv' %} selected {% endif %} >American Standard</option>
+              <option value="t_bbe" {% if allBibles.0.idbible == 't_bbe' %} selected {% endif %} >Bible in Basic English</option>
+              <option value="t_kjv" {% if allBibles.0.idbible == 't_kjv' %} selected {% endif %} >King James Version</option>
+              <option value="t_web" {% if allBibles.0.idbible == 't_web' %} selected {% endif %} >World English Bible</option>
+              <option value="t_ylt" {% if allBibles.0.idbible == 't_ylt' %} selected {% endif %} >Young's Literal Translation</option>
+            </select>
+      
+            <label class="center">Books</label>
+            <select name="book" class="center">
+              {% for x in books %}
+                <option value="{{ x.order }}" {% if allBibles.0.b == x.order %} selected {% endif %} >{{ x.title_short }}</option>
+              {% endfor %}
+            </select>
+  
+            <label class="center">Chapters</label>
 
-    </form>
-  </div>
+            <div id="chaptersNumbers" class="center">
+              {% for x in chapters %}
+              <a href="/read/{{allBibles.0.idbible}}/{{allBibles.0.b}}/{{ x.c }}">{{ x.c }}</a>
+              {% endfor %}            
+            </div>
+            
+            
+            <div class="center">
+              <input type="submit" name="submit" class="buttonsForm" value="Read it!">
+            </div>            
+          </legend>
+  
+        </fieldset>
+      </form>
+    </aside>
 {% endblock %}
 
